@@ -1,30 +1,21 @@
 package com.library;
 
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringWebMvcInitializer extends AbstractDispatcherServletInitializer {
+public class SpringWebMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
-    protected WebApplicationContext createRootApplicationContext() {
-        AnnotationConfigWebApplicationContext applicationContext =
-                new AnnotationConfigWebApplicationContext();
-        applicationContext.register(SpringConfig.class);
-        return applicationContext;
+    protected Class[] getRootConfigClasses() {
+        return new Class[] { Application.class };
     }
 
     @Override
-    protected WebApplicationContext createServletApplicationContext() {
-        AnnotationConfigWebApplicationContext applicationContext =
-                new AnnotationConfigWebApplicationContext();
-        applicationContext.register(WebMVCConfig.class);
-
-        return applicationContext;
+    protected Class[] getServletConfigClasses() {
+        return null;
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[] { "/" };
     }
 }
