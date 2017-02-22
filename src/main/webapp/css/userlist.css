@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: silver;
+}
+
+.wrapper{
+    margin: 0 auto;
+    width: 960px;
+}
+.users{
+    margin: 100px 0;
+    width: 49%;
+    float: left;
+}
+.users p{
+    text-align: center;
+    font-size: 24px;
+    padding-bottom: 10px;
+}
+.books{
+    margin: 100px 0;
+    width: 49%;
+    float: right;
+}
+.books p{
+    text-align: center;
+    font-size: 24px;
+    padding-bottom: 10px;
+}

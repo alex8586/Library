@@ -11,7 +11,7 @@
             <h1>Welcome to test task</h1>
         </div>
         <div class="links">
-            <a href="">To the User list</a>
+            <a href="<c:url value="/userlist"/> ">To the User list</a>
         </div>
     </div>
 </body>
