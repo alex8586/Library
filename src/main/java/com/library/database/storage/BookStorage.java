@@ -46,6 +46,31 @@ public class BookStorage {
         book5.setTitle("Dark Matter");
         bookList.add(book5);
 
+        Book book6 = new Book();
+        book6.setId(6);
+        book6.setTitle("Salt to the Sea");
+        bookList.add(book6);
+
+        Book book7 = new Book();
+        book7.setId(7);
+        book7.setTitle("Heartless");
+        bookList.add(book7);
+
+        Book book8 = new Book();
+        book8.setId(8);
+        book8.setTitle("All the Ugly and Wonderful Things");
+        bookList.add(book8);
+
+        Book book9 = new Book();
+        book9.setId(9);
+        book9.setTitle("Commonwealth");
+        bookList.add(book9);
+
+        Book book10 = new Book();
+        book10.setId(10);
+        book10.setTitle("The Couple Next Door");
+        bookList.add(book10);
+
         return bookList;
     }
 }
