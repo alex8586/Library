@@ -1,9 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>User details</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/user_details.css"/> ">
+    <style>
+        .error
+        {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -37,8 +45,8 @@
         <div class="change">
             <form action="<c:url value="/updateUserDetail"/> " method="post">
                 <input type="hidden" name="id" value="${requestScope.user.id}">
-                Name <input type="text" name="name"><br>
-                Age <input type="text" name="age"><br>
+                Name <input type="text" name="name"><span class="error">${sessionScope.nameError}</span> <br>
+                Age <input type="text" name="age"><span class="error">${sessionScope.ageError}</span><br>
                 <button type="submit">Update user</button>
             </form>
         </div>

@@ -1,8 +1,12 @@
 package com.library.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Book {
 
     private long id;
+
+    @NotBlank(message = "Title can't be empty")
     private String title;
 
     public long getId() {

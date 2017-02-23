@@ -1,12 +1,24 @@
 package com.library.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.*;
 import java.util.List;
 
 public class User {
 
     private long id;
+
+    @NotBlank(message = "Field name can't be empty")
+    @Pattern(regexp = "[a-zA-Z]", message = "Name should be writing with letters")
     private String name;
-    private int age;
+
+    @Digits(integer = 3, fraction = 0, message = "The value of age can not be more than 3 digits")
+    @NotNull(message = "Field age can't be empty")
+    @Min(value = 1, message = "The minimum age should be 1")
+    @Max(value = 120, message = "The maximum age can not more than be 120")
+    private Integer age;
+
     private List<Book> bookList;
 
     public long getId() {
