@@ -17,7 +17,6 @@ public class UserDetailController {
 
     @RequestMapping(value = "/userDetail/{userId}", method = RequestMethod.GET)
     public ModelAndView showUserDetail(@PathVariable("userId") long id){
-        System.out.println("controller user id " + id);
         ModelAndView model = new ModelAndView("user_details");
         model.addAllObjects(userService.getUser(id));
         return model;
@@ -30,5 +29,11 @@ public class UserDetailController {
 
         userService.updateUserDetails(id, name, age);
         return new ModelAndView("redirect:/userDetail/" + id);
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    public ModelAndView deleteUser(@RequestParam ("id") long id){
+        userService.deleteUser(id);
+        return new ModelAndView("redirect:/userlist");
     }
 }

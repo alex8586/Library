@@ -26,7 +26,11 @@
                 <c:if test="${empty requestScope.user.bookList}">
                     ${requestScope.user.name} has no books
                 </c:if>
-
+                <br><br>
+                <form action="<c:url value="/deleteUser"/>" method="post">
+                    <input type="hidden" name="id" value="${requestScope.user.id}">
+                    <button type="submit">Delete user</button>
+                </form>
             </c:if>
         </div>
 

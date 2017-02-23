@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
         forUpdate.setAge(age);
         userDao.update(forUpdate);
     }
+
+    public void deleteUser(long id) {
+        User user = userDao.getById(id);
+        userDao.delete(user);
+    }
 }
