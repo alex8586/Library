@@ -1,5 +1,6 @@
 package com.library.database.storage;
 
+import com.library.domain.Book;
 import com.library.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,14 @@ public class UserStorage {
         user.setId(0);
         user.setName("Mihail");
         user.setAge(23);
+        List<Book> bookList = new ArrayList<Book>();
+        Book book = new Book();
+        book.setTitle("When Breath Becomes Air");
+        bookList.add(book);
+        Book book1 = new Book();
+        book1.setTitle("Truly Madly Guilty");
+        bookList.add(book1);
+        user.setBookList(bookList);
         userList.add(user);
 
         User user1 = new User();

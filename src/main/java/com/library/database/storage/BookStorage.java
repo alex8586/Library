@@ -12,7 +12,6 @@ public class BookStorage {
     private List<Book> bookList;
 
     private BookStorage() {
-        System.out.println("in bookStorage");
         this.bookList = new ArrayList<Book>();
     }
 

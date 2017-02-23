@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>User list</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="css/userlist.css"/> ">
+    <link rel="stylesheet" type="text/css" href="<c:url value="css/user_list.css"/> ">
 </head>
 <body>
     <div class="wrapper">
@@ -12,7 +12,7 @@
 
             <c:if test="${not empty requestScope.userlist}">
                 <c:forEach items="${requestScope.userlist}" var="user">
-                    <a href="">${user.name}</a><br>
+                    <a href="<c:url value="/userDetail/${user.id}"/> ">${user.name}</a><br>
                 </c:forEach>
             </c:if>
         </div>

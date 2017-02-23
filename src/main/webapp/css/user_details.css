@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: silver;
+}
+p{
+    font-size: 24px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 960px;
+}
+.user{
+    width: 49%;
+    margin-top: 60px;
+    float: left;
+}
+.change{
+    width: 49%;
+    margin-top: 60px;
+    float: right;
+    line-height: 2em;
+}

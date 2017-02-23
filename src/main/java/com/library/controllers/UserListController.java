@@ -19,7 +19,7 @@ public class UserListController {
 
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     public ModelAndView userlist(){
-        ModelAndView model = new ModelAndView("userlist");
+        ModelAndView model = new ModelAndView("user_list");
         model.addAllObjects(userListService.getUserList());
         model.addAllObjects(bookListService.getBookList());
         return model;
