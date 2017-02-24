@@ -15,6 +15,17 @@
                     <a href="<c:url value="/userDetail/${user.id}"/> ">${user.name}</a><br>
                 </c:forEach>
             </c:if>
+            <c:if test="${empty requestScope.userlist}">
+                There are no users in list
+            </c:if>
+            <br>
+            <p>Add new user :</p>
+            <form action="<c:url value="/createUser"/> " method="post">
+                <input type="hidden" name="id" value="0">
+                Name <input type="text" name="name"><span class="error">${sessionScope.nameCreatingUserError}</span> <br>
+                Age <input type="text" name="age"><span class="error">${sessionScope.ageCreatingUserError}</span><br>
+                <button type="submit">Create user</button>
+            </form>
         </div>
         <div class="books">
             <p>Available books :</p>

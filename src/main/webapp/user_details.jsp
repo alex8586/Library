@@ -5,13 +5,6 @@
 <head>
     <title>User details</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/user_details.css"/> ">
-    <style>
-        .error
-        {
-            color: #ff0000;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -35,6 +28,7 @@
                     ${requestScope.user.name} has no books
                 </c:if>
                 <br><br>
+                <p>Delete user :</p>
                 <form action="<c:url value="/deleteUser"/>" method="post">
                     <input type="hidden" name="id" value="${requestScope.user.id}">
                     <button type="submit">Delete user</button>
@@ -43,10 +37,11 @@
         </div>
 
         <div class="change">
+            <p>Change user detail :</p>
             <form action="<c:url value="/updateUserDetail"/> " method="post">
                 <input type="hidden" name="id" value="${requestScope.user.id}">
-                Name <input type="text" name="name"><span class="error">${sessionScope.nameError}</span> <br>
-                Age <input type="text" name="age"><span class="error">${sessionScope.ageError}</span><br>
+                Name <input type="text" name="name"><span class="error">${sessionScope.nameUserDetailError}</span> <br>
+                Age <input type="text" name="age"><span class="error">${sessionScope.ageUserDetailError}</span><br>
                 <button type="submit">Update user</button>
             </form>
         </div>

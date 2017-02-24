@@ -19,8 +19,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User create(User user) {
-        user.setId(userList.size());
-        userList.add(user);
+        if(userList.size() == 0){
+            user.setId(0);
+            userList.add(user);
+        }else if(userList.size() != 0) {
+            user.setId(userList.get(userList.size() - 1).getId() + 1);
+            userList.add(user);
+        }
         return user;
     }
 

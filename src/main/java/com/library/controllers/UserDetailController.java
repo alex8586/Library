@@ -22,7 +22,9 @@ public class UserDetailController {
     private ErrorSessionCleaner sessionCleaner;
 
     @RequestMapping(value = "/userDetail/{userId}", method = RequestMethod.GET)
-    public ModelAndView showUserDetail(@PathVariable("userId") long id){
+    public ModelAndView showUserDetail(HttpServletRequest request,
+                                       @PathVariable("userId") long id){
+        sessionCleaner.clearCreatingUserError(request);
         ModelAndView model = new ModelAndView("user_details");
         model.addAllObjects(userService.getUser(id));
         return model;
@@ -34,12 +36,12 @@ public class UserDetailController {
                                     BindingResult bindingResult){
 
         if(bindingResult.hasFieldErrors()){
-            sessionCleaner.clearSession(request);
+            sessionCleaner.clearUserDetailError(request);
             populateError("name", bindingResult, request);
             populateError("age", bindingResult, request);
             return"redirect:/userDetail/" + user.getId();
         }else {
-            sessionCleaner.clearSession(request);
+            sessionCleaner.clearUserDetailError(request);
             userService.updateUserDetails(user.getId(), user.getName(), user.getAge());
         }
         return"redirect:/userDetail/" + user.getId();
@@ -47,14 +49,14 @@ public class UserDetailController {
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
     public ModelAndView deleteUser(@RequestParam ("id") long id, HttpServletRequest request){
-        sessionCleaner.clearSession(request);
+        sessionCleaner.clearUserDetailError(request);
         userService.deleteUser(id);
         return new ModelAndView("redirect:/userlist");
     }
 
     private void populateError (String field, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasFieldErrors(field)) {
-            request.getSession().setAttribute(field +"Error", bindingResult.getFieldError(field)
+            request.getSession().setAttribute(field +"UserDetailError", bindingResult.getFieldError(field)
                     .getDefaultMessage());
         }
     }

@@ -19,8 +19,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     public Book create(Book book) {
-        book.setId(bookList.size());
-        bookList.add(book);
+        if(bookList.size() == 0){
+            book.setId(0);
+            bookList.add(book);
+        }else if(bookList.size() != 0) {
+            book.setId(bookList.get(bookList.size() - 1).getId() + 1);
+            bookList.add(book);
+        }
         return book;
     }
 
