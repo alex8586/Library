@@ -40,8 +40,8 @@
             <p>Change user detail :</p>
             <form action="<c:url value="/updateUserDetail"/> " method="post">
                 <input type="hidden" name="id" value="${requestScope.user.id}">
-                Name <input type="text" name="name"><span class="error">${sessionScope.nameUserDetailError}</span> <br>
-                Age <input type="text" name="age"><span class="error">${sessionScope.ageUserDetailError}</span><br>
+                Name <input type="text" name="name">&nbsp; <span class="error">${sessionScope.nameUserDetailError}</span> <br>
+                Age &nbsp;&nbsp;&nbsp;<input type="text" name="age">&nbsp; <span class="error">${sessionScope.ageUserDetailError}</span><br>
                 <button type="submit">Update user</button>
             </form>
         </div>

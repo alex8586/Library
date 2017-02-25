@@ -10,17 +10,21 @@
 
     <packaging>war</packaging>
 
+    <properties>
+        <spring.version>4.3.5.RELEASE</spring.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.3.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
@@ -45,7 +49,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
+            <version>5.3.4.Final</version>
         </dependency>
 
     </dependencies>

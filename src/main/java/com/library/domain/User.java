@@ -2,7 +2,8 @@ package com.library.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class User {
@@ -13,10 +14,7 @@ public class User {
     @Pattern(regexp = "[a-zA-Z]+", message = "Name should be writing with letters")
     private String name;
 
-    @Digits(integer = 3, fraction = 0, message = "The value of age can not be more than 3 digits")
-    @NotNull(message = "Field age can't be empty")
     @Min(value = 1, message = "The minimum age should be 1")
-    @Max(value = 120, message = "The maximum age can't be more than 120")
     private Integer age;
 
     private List<Book> bookList;

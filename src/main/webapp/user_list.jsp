@@ -22,8 +22,8 @@
             <p>Add new user :</p>
             <form action="<c:url value="/createUser"/> " method="post">
                 <input type="hidden" name="id" value="0">
-                Name <input type="text" name="name"><span class="error">${sessionScope.nameCreatingUserError}</span> <br>
-                Age <input type="text" name="age"><span class="error">${sessionScope.ageCreatingUserError}</span><br>
+                Name <input type="text" name="name"> &nbsp;<span class="error">${sessionScope.nameCreatingUserError}</span> <br>
+                Age &nbsp;&nbsp;&nbsp;<input type="text" name="age" > &nbsp;<span class="error">${sessionScope.ageCreatingUserError}</span><br>
                 <button type="submit">Create user</button>
             </form>
         </div>
