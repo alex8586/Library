@@ -2,7 +2,7 @@ package com.library.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class Book {
+public class Book implements Comparable<Book> {
 
     private long id;
 
@@ -31,5 +31,9 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    public int compareTo(Book o) {
+        return this.title.compareTo(o.getTitle());
     }
 }

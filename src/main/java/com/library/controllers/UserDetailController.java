@@ -51,7 +51,7 @@ public class UserDetailController {
     public ModelAndView deleteUser(@RequestParam ("id") long id, HttpServletRequest request){
         sessionCleaner.clearUserDetailError(request);
         userService.deleteUser(id);
-        return new ModelAndView("redirect:/userlist");
+        return new ModelAndView("redirect:/userlist/0");
     }
 
     private void populateError (String field, BindingResult bindingResult, HttpServletRequest request) {

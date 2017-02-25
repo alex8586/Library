@@ -15,4 +15,6 @@ public interface BookDao {
     Book getById(long id);
 
     List<Book> getAll();
+
+    List<Book> get20Books();
 }

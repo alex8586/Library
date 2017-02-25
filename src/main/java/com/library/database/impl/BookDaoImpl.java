@@ -6,7 +6,7 @@ import com.library.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 @Component
 public class BookDaoImpl implements BookDao {
@@ -14,15 +14,15 @@ public class BookDaoImpl implements BookDao {
     private List<Book> bookList;
 
     @Autowired
-    public BookDaoImpl(BookStorage bookStorage){
+    public BookDaoImpl(BookStorage bookStorage) {
         this.bookList = bookStorage.loadData();
     }
 
     public Book create(Book book) {
-        if(bookList.size() == 0){
+        if (bookList.size() == 0) {
             book.setId(0);
             bookList.add(book);
-        }else if(bookList.size() != 0) {
+        } else if (bookList.size() != 0) {
             book.setId(bookList.get(bookList.size() - 1).getId() + 1);
             bookList.add(book);
         }
@@ -30,8 +30,8 @@ public class BookDaoImpl implements BookDao {
     }
 
     public void update(Book book) {
-        for(Book fromDb : bookList){
-            if(fromDb.getId() == book.getId()){
+        for (Book fromDb : bookList) {
+            if (fromDb.getId() == book.getId()) {
                 fromDb.setTitle(book.getTitle());
             }
         }
@@ -42,8 +42,8 @@ public class BookDaoImpl implements BookDao {
     }
 
     public Book getById(final long id) {
-        for(Book book : bookList){
-            if(book.getId() == id){
+        for (Book book : bookList) {
+            if (book.getId() == id) {
                 return book;
             }
         }
@@ -54,5 +54,20 @@ public class BookDaoImpl implements BookDao {
         List<Book> books;
         books = bookList;
         return books;
+    }
+
+    public List<Book> get20Books() {
+        Collections.shuffle(bookList);
+        Set<Book> bookSet = new TreeSet<Book>();
+
+        for (Book book : bookList) {
+            bookSet.add(book);
+            if (bookSet.size() == 20)
+                break;
+        }
+
+        List<Book> result = new ArrayList<Book>(bookSet);
+
+        return result;
     }
 }

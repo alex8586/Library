@@ -5,6 +5,7 @@ import com.library.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,8 @@ public class BookListServiceImpl implements BookListService {
     public Map<String, Object> getBookList() {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        List<Book> bookList= bookDao.getAll();
+        List<Book> bookList= bookDao.get20Books();
+        Collections.sort(bookList);
         result.put("booklist", bookList);
 
         return result;
