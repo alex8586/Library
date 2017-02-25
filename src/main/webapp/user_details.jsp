@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
 
-        <p><a href="<c:url value="/userlist"/> ">To the User list</a></p>
+        <p><a href="<c:url value="/userlist/0"/> ">To the User list</a></p>
         <div class="user">
             <p>User :</p>
             <c:if test="${not empty requestScope.user}">

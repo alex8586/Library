@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>User list</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="css/user_list.css"/> ">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/user_list.css"/> ">
 </head>
 <body>
     <div class="wrapper">
@@ -14,7 +14,19 @@
                 <c:forEach items="${requestScope.userlist}" var="user">
                     <a href="<c:url value="/userDetail/${user.id}"/> ">${user.name}</a><br>
                 </c:forEach>
+
+                <br>
+                <c:if test="${requestScope.currentPage > 0}">
+                    <a href="<c:url value="/userlist/${requestScope.currentPage - 1}"/> ">previous</a>
+                </c:if>
+
+                ${requestScope.currentPage}
+
+                <c:if test="${requestScope.maxPage > requestScope.currentPage + 1}">
+                    <a href="<c:url value="/userlist/${requestScope.currentPage + 1}" /> ">next</a>
+                </c:if>
             </c:if>
+            <br>
             <c:if test="${empty requestScope.userlist}">
                 There are no users in list
             </c:if>
