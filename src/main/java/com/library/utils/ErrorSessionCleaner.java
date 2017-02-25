@@ -7,13 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class ErrorSessionCleaner {
 
-    public void clearUserDetailError(HttpServletRequest request){
-        request.getSession().setAttribute("nameUserDetailError", "");
-        request.getSession().setAttribute("ageUserDetailError", "");
+    public void clearSessionError(HttpServletRequest request, String fieldName, String fieldAge){
+        request.getSession().setAttribute(fieldName, "");
+        request.getSession().setAttribute(fieldAge, "");
     }
 
-    public void clearCreatingUserError(HttpServletRequest request){
-        request.getSession().setAttribute("nameCreatingUserError", "");
-        request.getSession().setAttribute("ageCreatingUserError", "");
-    }
 }

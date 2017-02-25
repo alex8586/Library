@@ -24,13 +24,13 @@ public class UserListServiceImpl implements UserListService {
         if(pageNumber > userList.size()/10){
             pagedListHolder.setPageSize(10);
             pagedListHolder.setPage(0);
-            result.put("userlist", pagedListHolder.getPageList());
+            result.put("showUserListPage", pagedListHolder.getPageList());
             result.put("currentPage", 0);
             result.put("maxPage", pagedListHolder.getPageCount());
         }else {
             pagedListHolder.setPageSize(10);
             pagedListHolder.setPage(pageNumber);
-            result.put("userlist", pagedListHolder.getPageList());
+            result.put("showUserListPage", pagedListHolder.getPageList());
             result.put("currentPage", pageNumber);
             result.put("maxPage", pagedListHolder.getPageCount());
         }

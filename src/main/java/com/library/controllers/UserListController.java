@@ -5,6 +5,7 @@ import com.library.businesslogic.UserListService;
 import com.library.businesslogic.UserService;
 import com.library.domain.User;
 import com.library.utils.ErrorSessionCleaner;
+import com.library.utils.PopulateErrorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,10 @@ import javax.validation.Valid;
 
 @Controller
 public class UserListController {
+
+    private final static String UNICAL_USER_LIST = "CreatingUserError";
+    private final static String NAME_ERROR = "nameCreatingUserError";
+    private final static String AGE_ERROR = "ageCreatingUserError";
 
     @Autowired
     private UserListService userListService;
@@ -29,11 +34,14 @@ public class UserListController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/userlist/{pageNumber}", method = RequestMethod.GET)
-    public ModelAndView userlist(HttpServletRequest request,
-                                 @PathVariable("pageNumber") int pageNumber) {
+    @Autowired
+    private PopulateErrorUtil errorUtil;
 
-        sessionCleaner.clearUserDetailError(request);
+    @RequestMapping(value = "/userlist/{pageNumber}", method = RequestMethod.GET)
+    public ModelAndView showUserListPage(HttpServletRequest request,
+                                         @PathVariable("pageNumber") int pageNumber) {
+
+        sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
         ModelAndView model = new ModelAndView("user_list");
         model.addAllObjects(userListService.getUserList(pageNumber));
         model.addAllObjects(bookListService.getBookList());
@@ -46,21 +54,15 @@ public class UserListController {
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            sessionCleaner.clearCreatingUserError(request);
-            populateError("name", bindingResult, request);
-            populateError("age", bindingResult, request);
+            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+            errorUtil.populateError("name", UNICAL_USER_LIST, bindingResult, request);
+            errorUtil.populateError("age", UNICAL_USER_LIST, bindingResult, request);
             return "redirect:/userlist/0";
         } else {
-            sessionCleaner.clearCreatingUserError(request);
+            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
             userService.createUser(user);
         }
         return "redirect:/userlist/0";
     }
 
-    private void populateError(String field, BindingResult bindingResult, HttpServletRequest request) {
-        if (bindingResult.hasFieldErrors(field)) {
-            request.getSession().setAttribute(field + "CreatingUserError", bindingResult.getFieldError(field)
-                    .getDefaultMessage());
-        }
-    }
 }

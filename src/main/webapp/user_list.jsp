@@ -16,6 +16,7 @@
                 </c:forEach>
 
                 <br>
+                Pages :
                 <c:if test="${requestScope.currentPage > 0}">
                     <a href="<c:url value="/userlist/${requestScope.currentPage - 1}"/> ">previous</a>
                 </c:if>
