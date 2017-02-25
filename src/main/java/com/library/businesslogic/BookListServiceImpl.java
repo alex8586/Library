@@ -21,7 +21,7 @@ public class BookListServiceImpl implements BookListService {
 
         List<Book> bookList= bookDao.get20Books();
         Collections.sort(bookList);
-        result.put("booklist", bookList);
+        result.put("bookList", bookList);
 
         return result;
     }

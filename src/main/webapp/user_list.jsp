@@ -10,8 +10,8 @@
         <div class="users">
             <p>User list :</p>
 
-            <c:if test="${not empty requestScope.userlist}">
-                <c:forEach items="${requestScope.userlist}" var="user">
+            <c:if test="${not empty requestScope.userList}">
+                <c:forEach items="${requestScope.userList}" var="user">
                     <a href="<c:url value="/userDetail/${user.id}"/> ">${user.name}</a><br>
                 </c:forEach>
 
@@ -28,7 +28,7 @@
                 </c:if>
             </c:if>
             <br>
-            <c:if test="${empty requestScope.userlist}">
+            <c:if test="${empty requestScope.userList}">
                 There are no users in list
             </c:if>
             <br>
@@ -42,9 +42,9 @@
         </div>
         <div class="books">
             <p>Available books :</p>
-            <c:if test="${not empty requestScope.booklist}">
-                <c:forEach items="${requestScope.booklist}" var="book">
-                    ${book.id} &nbsp ${book.title}<br>
+            <c:if test="${not empty requestScope.bookList}">
+                <c:forEach items="${requestScope.bookList}" var="book">
+                    ${book.title}<br>
                 </c:forEach>
             </c:if>
         </div>
