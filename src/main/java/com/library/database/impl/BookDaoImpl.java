@@ -33,6 +33,7 @@ public class BookDaoImpl implements BookDao {
         for (Book fromDb : bookList) {
             if (fromDb.getId() == book.getId()) {
                 fromDb.setTitle(book.getTitle());
+                break;
             }
         }
     }
@@ -66,8 +67,6 @@ public class BookDaoImpl implements BookDao {
                 break;
         }
 
-        List<Book> result = new ArrayList<Book>(bookSet);
-
-        return result;
+        return new ArrayList<Book>(bookSet);
     }
 }

@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao {
                 fromDb.setName(user.getName());
                 fromDb.setAge(user.getAge());
                 fromDb.setBookList(user.getBookList());
+                break;
             }
         }
     }
@@ -53,8 +54,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List<User> getAll() {
-        List<User> users;
-        users = userList;
-        return users;
+        return userList.subList(0, userList.size());
     }
 }
