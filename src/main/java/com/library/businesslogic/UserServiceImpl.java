@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService {
         userDao.create(user);
     }
 
-    public void updateUserDetails(long id, String name, int age){
-        User forUpdate = userDao.getById(id);
-        forUpdate.setName(name);
-        forUpdate.setAge(age);
+    public void updateUserDetails(User user){
+        User forUpdate = userDao.getById(user.getId());
+        forUpdate.setName(user.getName());
+        forUpdate.setAge(user.getAge());
         userDao.update(forUpdate);
     }
 

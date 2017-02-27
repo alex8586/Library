@@ -18,9 +18,11 @@ import javax.validation.Valid;
 @Controller
 public class UserListController {
 
-    private final static String UNICAL_USER_LIST = "CreatingUserError";
-    private final static String NAME_ERROR = "nameCreatingUserError";
-    private final static String AGE_ERROR = "ageCreatingUserError";
+    private final static String FIELD_SIGH = "CreatingUserError";
+    private final static String NAME_CREATING_ERROR = "nameCreatingUserError";
+    private final static String AGE_CREATING_ERROR = "ageCreatingUserError";
+    private final static String NAME_UPDATE_ERROR = "nameUserDetailError";
+    private final static String AGE_UPDATE_ERROR = "ageUserDetailError";
 
     @Autowired
     private UserListService userListService;
@@ -40,8 +42,7 @@ public class UserListController {
     @RequestMapping(value = "/userlist/{pageNumber}", method = RequestMethod.GET)
     public ModelAndView showUserListPage(HttpServletRequest request,
                                          @PathVariable("pageNumber") int pageNumber) {
-
-        sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+        sessionCleaner.clearSessionError(request, NAME_UPDATE_ERROR, AGE_UPDATE_ERROR);
         ModelAndView model = new ModelAndView("user_list");
         model.addAllObjects(userListService.getUserList(pageNumber));
         model.addAllObjects(bookListService.getBookList());
@@ -54,12 +55,12 @@ public class UserListController {
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
-            errorUtil.populateError("name", UNICAL_USER_LIST, bindingResult, request);
-            errorUtil.populateError("age", UNICAL_USER_LIST, bindingResult, request);
+            sessionCleaner.clearSessionError(request, NAME_CREATING_ERROR, AGE_CREATING_ERROR);
+            errorUtil.populateError("name", FIELD_SIGH, bindingResult, request);
+            errorUtil.populateError("age", FIELD_SIGH, bindingResult, request);
             return "redirect:/userlist/0";
         } else {
-            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+            sessionCleaner.clearSessionError(request, NAME_CREATING_ERROR, AGE_CREATING_ERROR);
             userService.createUser(user);
         }
         return "redirect:/userlist/0";

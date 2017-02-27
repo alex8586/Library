@@ -19,7 +19,7 @@ public class BookListServiceImpl implements BookListService {
     public Map<String, Object> getBookList() {
         Map<String, Object> result = new HashMap<String, Object>();
 
-        List<Book> bookList= bookDao.get20Books();
+        List<Book> bookList = bookDao.get20Books();
         Collections.sort(bookList);
         result.put("bookList", bookList);
 

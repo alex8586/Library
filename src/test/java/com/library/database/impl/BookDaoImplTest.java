@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +22,7 @@ public class BookDaoImplTest {
     private BookDaoImpl bookDao;
 
     @Test
-    public void createUserTest(){
+    public void createBookTest(){
         int listSize = bookDao.getAll().size();
 
         Book book = new Book();
@@ -33,7 +35,7 @@ public class BookDaoImplTest {
     }
 
     @Test
-    public void updateUserTest(){
+    public void updateBookTest(){
         Book book = createBookInDao();
         long bookId = book.getId();
         book.setTitle("This is new book");
@@ -46,7 +48,7 @@ public class BookDaoImplTest {
     }
 
     @Test
-    public void deleteUserTest(){
+    public void deleteBookTest(){
         Book book = createBookInDao();
         long bookId = book.getId();
         bookDao.delete(book);
@@ -62,6 +64,21 @@ public class BookDaoImplTest {
         Book fromDao = bookDao.getById(bookId);
         assertTrue(bookId == fromDao.getId());
         assertEquals(book.getTitle(), fromDao.getTitle());
+    }
+
+    @Test
+    public void get20BooksTest(){
+        fillBookList();
+        List<Book> bookList = bookDao.get20Books();
+        assertTrue(20 == bookList.size());
+    }
+
+    private void fillBookList(){
+        for(int i = 0; i < 25; i++){
+            Book book = new Book();
+            book.setTitle("book name " + i);
+            bookDao.create(book);
+        }
     }
 
     private Book createBookInDao(){

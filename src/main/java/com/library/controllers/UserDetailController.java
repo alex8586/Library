@@ -17,8 +17,10 @@ import javax.validation.Valid;
 public class UserDetailController {
 
     private final static String UNICAL_USER_DETAIL = "UserDetailError";
-    private final static String NAME_ERROR = "nameUserDetailError";
-    private final static String AGE_ERROR = "ageUserDetailError";
+    private final static String NAME_UPDATE_ERROR = "nameUserDetailError";
+    private final static String AGE_UPDATE_ERROR = "ageUserDetailError";
+    private final static String NAME_CREATING_ERROR = "nameCreatingUserError";
+    private final static String AGE_CREATING_ERROR = "ageCreatingUserError";
 
     @Autowired
     private UserService userService;
@@ -32,7 +34,7 @@ public class UserDetailController {
     @RequestMapping(value = "/userDetail/{userId}", method = RequestMethod.GET)
     public ModelAndView showUserDetail(HttpServletRequest request,
                                        @PathVariable("userId") long id){
-        sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+        sessionCleaner.clearSessionError(request, NAME_CREATING_ERROR, AGE_CREATING_ERROR);
         ModelAndView model = new ModelAndView("user_details");
         model.addAllObjects(userService.getUser(id));
         return model;
@@ -44,20 +46,20 @@ public class UserDetailController {
                                     BindingResult bindingResult){
 
         if(bindingResult.hasFieldErrors()){
-            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+            sessionCleaner.clearSessionError(request, NAME_UPDATE_ERROR, AGE_UPDATE_ERROR);
             errorUtil.populateError("name", UNICAL_USER_DETAIL, bindingResult, request);
             errorUtil.populateError("age", UNICAL_USER_DETAIL, bindingResult, request);
             return"redirect:/userDetail/" + user.getId();
         }else {
-            sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
-            userService.updateUserDetails(user.getId(), user.getName(), user.getAge());
+            sessionCleaner.clearSessionError(request, NAME_UPDATE_ERROR, AGE_UPDATE_ERROR);
+            userService.updateUserDetails(user);
         }
         return"redirect:/userDetail/" + user.getId();
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
     public ModelAndView deleteUser(@RequestParam ("id") long id, HttpServletRequest request){
-        sessionCleaner.clearSessionError(request, NAME_ERROR, AGE_ERROR);
+        sessionCleaner.clearSessionError(request, NAME_UPDATE_ERROR, AGE_UPDATE_ERROR);
         userService.deleteUser(id);
         return new ModelAndView("redirect:/userlist/0");
     }

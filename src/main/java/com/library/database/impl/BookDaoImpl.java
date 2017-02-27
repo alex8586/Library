@@ -42,7 +42,7 @@ public class BookDaoImpl implements BookDao {
         bookList.remove(book);
     }
 
-    public Book getById(final long id) {
+    public Book getById(long id) {
         for (Book book : bookList) {
             if (book.getId() == id) {
                 return book;
@@ -52,13 +52,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     public List<Book> getAll() {
-        List<Book> books;
-        books = bookList;
-        return books;
+        return bookList.subList(0, bookList.size());
     }
 
     public List<Book> get20Books() {
-        Collections.shuffle(bookList);
         Set<Book> bookSet = new TreeSet<Book>();
 
         for (Book book : bookList) {
